@@ -22,8 +22,8 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "arc-policy-envelope": "https://codeload.github.com/Jaydearcadian/arc-policy-envelope/tar.gz/b694f829f8066e415b94381aadc2398b5e6b20b7",
-    "arc-proof-of-payable": "https://codeload.github.com/Jaydearcadian/arc-proof-of-payable/tar.gz/7790524606c3e4b6550a513e199442434c10e730"
+    "arc-policy-envelope": "https://codeload.github.com/Jaydearcadian/arc-policy-envelope/tar.gz/865fbdb205af702b310cb2ec8e40c504aae6b007",
+    "arc-proof-of-payable": "https://codeload.github.com/Jaydearcadian/arc-proof-of-payable/tar.gz/68a46cb92d398dc8a7be14568906ae881b924196"
   },
   "devDependencies": {
     "@types/node": "^24.7.2",
