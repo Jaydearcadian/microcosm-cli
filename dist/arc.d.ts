@@ -1,7 +1,7 @@
 import type { McosmConfig } from "./config.js";
 export declare const getArcStatus: (config: McosmConfig) => Promise<{
     network: "arc-testnet";
-    expectedChainId: 5042002;
+    expectedChainId: number;
     chainId: number;
     ok: boolean;
     blockNumber: string;
