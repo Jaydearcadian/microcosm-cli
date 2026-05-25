@@ -7,6 +7,7 @@ import { composePaymentProof } from "./proof.js";
 import { prepareSettlement } from "./settlement.js";
 import { reviewRun } from "./review.js";
 import { runLoop, runOnce } from "./loop.js";
+import { createDemoRun, renderDemo } from "./demo.js";
 import { assertSafeArgs } from "./safety.js";
 import { createState, latest, type ConsoleState, type Scenario } from "./state.js";
 import { fail, json, ok, table, type CommandResult } from "./output.js";
@@ -27,6 +28,7 @@ Command boxes:
   arc          inspect Arc network state
   loop         automate the programmable payment flow
   adapter      inspect future signer adapters
+  demo         open the offline operator-room demo
 
 Other commands:
   status       show current console state
@@ -183,6 +185,11 @@ export const handleCommand = async (
 
     if (group === "adapter") {
       if (subcommand === "list" || subcommand === "status") return ok(printable(signerAdapters(), args.json));
+    }
+
+    if (group === "demo") {
+      const run = createDemoRun(scenarioFromArgs(args, state));
+      return ok(args.json ? json(run) : `${renderDemo(run)}\n`);
     }
 
     if (group === "arc") {

@@ -87,6 +87,31 @@ test("adapters are visible but disabled", async () => {
   assert.ok(adapters.every((adapter) => adapter.status === "disabled"));
 });
 
+test("demo renders the operator room", async () => {
+  const result = await run("demo");
+  assert.equal(result.exitCode, 0);
+  assert.match(result.stdout, /MICROCOSM OPERATOR ROOM/);
+  assert.match(result.stdout, /Policy Envelope/);
+  assert.match(result.stdout, /Settlement Boundary/);
+  assert.match(result.stdout, /WalletConnect: disabled/);
+});
+
+test("demo denied scenario shows blocked settlement", async () => {
+  const result = await run("demo --scenario denied");
+  assert.equal(result.exitCode, 0);
+  assert.match(result.stdout, /DENIED/);
+  assert.match(result.stdout, /BLOCKED/);
+});
+
+test("demo json returns deterministic run payload", async () => {
+  const result = await run("demo --json");
+  assert.equal(result.exitCode, 0);
+  const demo = JSON.parse(result.stdout) as { id: string; proof: { verification: { ok: boolean } }; settlement: { status: string } };
+  assert.equal(demo.id, "run_1");
+  assert.equal(demo.proof.verification.ok, true);
+  assert.equal(demo.settlement.status, "prepared");
+});
+
 test("binary source entry launches help", async () => {
   const { stdout } = await execFile("node_modules/.bin/tsx", ["src/main.ts", "help"], {
     cwd: process.cwd(),

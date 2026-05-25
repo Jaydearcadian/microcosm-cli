@@ -1,5 +1,5 @@
 {
-  "name": "microcosm-cli",
+  "name": "mcosm",
   "version": "0.1.0",
   "description": "Installable Microcosm programmable payments CLI for Arc.",
   "license": "Apache-2.0",

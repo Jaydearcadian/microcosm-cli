@@ -8,9 +8,22 @@ Installable Microcosm programmable payments console for Arc.
 
 ```bash
 npm install
-npm run build
+npm run compile
 npm link
 mcosm
+```
+
+## Install from GitHub
+
+```bash
+npm install -g github:Jaydearcadian/microcosm-cli
+mcosm demo
+```
+
+The package name is `mcosm` so it can later be published for:
+
+```bash
+npm install -g mcosm
 ```
 
 ## Commands
@@ -23,6 +36,7 @@ settlement   prepare unsigned settlement instructions
 arc          inspect Arc network state
 loop         automate the programmable payment flow
 adapter      inspect future signer adapters
+demo         open the offline operator-room demo
 history      show session run history
 status       show current console state
 reset        clear in-memory state
@@ -30,6 +44,16 @@ exit         leave the shell
 ```
 
 Each command box prints its available subcommands when run without a subcommand.
+
+## Demo
+
+```bash
+mcosm demo
+mcosm demo --scenario denied
+mcosm demo --json
+```
+
+The demo renders an offline operator room for Arc-native programmable payments: payment intent, policy verdict, payable proof, review-board consensus, settlement boundary, and safety guardrails. Wallet adapters are visible but disabled until the next reviewed wallet-connect release.
 
 ## Safety
 

@@ -2,12 +2,13 @@ import { createInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import { parseArgs } from "./config.js";
 import { banner, handleCommand, helpText } from "./commands.js";
+import { createDemoRun, renderDemo } from "./demo.js";
 import { createState } from "./state.js";
 
 export const startShell = async (): Promise<number> => {
   const state = createState();
   const rl = createInterface({ input, output, prompt: "mcosm> " });
-  output.write(`${banner()}\nType help for commands.\n`);
+  output.write(`${banner()}\n${renderDemo(createDemoRun("allowed"))}\nType demo, demo --scenario denied, help, or exit.\n`);
 
   try {
     for (;;) {
