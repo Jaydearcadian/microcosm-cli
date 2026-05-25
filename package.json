@@ -1,0 +1,36 @@
+{
+  "name": "microcosm-cli",
+  "version": "0.1.0",
+  "description": "Installable Microcosm programmable payments CLI for Arc.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "mcosm": "./bin/mcosm.mjs"
+  },
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "files": [
+    "bin",
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepack": "npm run build",
+    "test": "node --test --import tsx test/*.test.ts",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "arc-policy-envelope": "github:Jaydearcadian/arc-policy-envelope",
+    "arc-proof-of-payable": "github:Jaydearcadian/arc-proof-of-payable",
+    "viem": "^2.47.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
