@@ -112,6 +112,27 @@ test("demo json returns deterministic run payload", async () => {
   assert.equal(demo.settlement.status, "prepared");
 });
 
+test("space renders non-interactively with --once", async () => {
+  const { stdout } = await execFile("node_modules/.bin/tsx", ["src/main.ts", "space", "--once"], {
+    cwd: process.cwd(),
+    timeout: 10000
+  });
+  assert.match(stdout, /MICROCOSM OPERATOR ROOM/);
+  assert.match(stdout, /Controls/);
+  assert.match(stdout, /alternate screen buffer/);
+});
+
+test("space --once --json returns deterministic payload", async () => {
+  const { stdout } = await execFile("node_modules/.bin/tsx", ["src/main.ts", "space", "--once", "--json"], {
+    cwd: process.cwd(),
+    timeout: 10000
+  });
+  const spaceResult = JSON.parse(stdout) as { id: string; proof: { verification: { ok: boolean } }; settlement: { status: string } };
+  assert.equal(spaceResult.id, "run_1");
+  assert.equal(spaceResult.proof.verification.ok, true);
+  assert.equal(spaceResult.settlement.status, "prepared");
+});
+
 test("binary source entry launches help", async () => {
   const { stdout } = await execFile("node_modules/.bin/tsx", ["src/main.ts", "help"], {
     cwd: process.cwd(),

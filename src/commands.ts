@@ -29,6 +29,7 @@ Command boxes:
   loop         automate the programmable payment flow
   adapter      inspect future signer adapters
   demo         open the offline operator-room demo
+  space        open isolated full-screen operator room
 
 Other commands:
   status       show current console state
